@@ -103,7 +103,7 @@ window.Game2048 = function () {
 
   this.events = {
     ArrowLeft: () => {
-      let { newBoard, newScore } = this.collapseLeft(this.boardValues);
+      let { newBoard, newScore } = this.collapseLeft(this.boardValues, this.score);
       this.boardValues = newBoard;
       this.score = newScore;
 
@@ -111,7 +111,7 @@ window.Game2048 = function () {
       this.newRandomCell();
     },
     ArrowRight: () => {
-      let { newBoard, newScore } = this.collapseRight(this.boardValues);
+      let { newBoard, newScore } = this.collapseRight(this.boardValues, this.score);
       this.boardValues = newBoard;
       this.score = newScore;
 
@@ -119,7 +119,7 @@ window.Game2048 = function () {
       this.newRandomCell();
     },
     ArrowUp: () => {
-      let { newBoard, newScore } = this.collapseUp(this.boardValues);
+      let { newBoard, newScore } = this.collapseUp(this.boardValues, this.score);
       this.boardValues = newBoard;
       this.score = newScore;
 
@@ -127,7 +127,7 @@ window.Game2048 = function () {
       this.newRandomCell();
     },
     ArrowDown: () => {
-      let { newBoard, newScore } = this.collapseDown(this.boardValues);
+      let { newBoard, newScore } = this.collapseDown(this.boardValues, this.score);
       this.boardValues = newBoard;
       this.score = newScore;
 
