@@ -94,23 +94,23 @@ window.Game2048 = function () {
   this.events = {
     ArrowLeft: () => {
       this.boardValues = this.collapseLeft(this.boardValues);
-      this.newRandomCell();
       this.refreshBoard();
+      this.newRandomCell();
     },
     ArrowRight: () => {
       this.boardValues = this.collapseRight(this.boardValues);
-      this.newRandomCell();
       this.refreshBoard();
+      this.newRandomCell();
     },
     ArrowUp: () => {
       this.boardValues = this.collapseUp(this.boardValues);
-      this.newRandomCell();
       this.refreshBoard();
+      this.newRandomCell();
     },
     ArrowDown: () => {
       this.boardValues = this.collapseDown(this.boardValues);
-      this.newRandomCell();
       this.refreshBoard();
+      this.newRandomCell();
     },
   };
 
