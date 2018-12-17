@@ -12,7 +12,6 @@ window.Game2048 = function () {
     [{}, {}, {}, {}]];
 
   this.refreshBoard = () => this.cells.forEach(cell => this.updateBoardCell(cell.x, cell.y));
-  this.duplicateBoardValues = b => [[...b[0]], [...b[1]], [...b[2]], [...b[3]]];
 
   this.collapseUp = (oldBoard) => {
     let b = this.duplicateBoardValues(oldBoard);
