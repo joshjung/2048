@@ -76,7 +76,7 @@ window.Game2048 = function () {
 
     if (unoccupied.length) {
       let i = Math.floor(Math.random() * unoccupied.length);
-      let v = [1, 2, 4][Math.floor(Math.random() * 3)];
+      let v = [2, 4][Math.floor(Math.random() * 2)];
       let cell = unoccupied[i];
 
       this.boardValues[cell.x][cell.y] = v;
