@@ -123,7 +123,7 @@ window.Game2048 = function () {
   };
 
   this.addKeyboardSupport = () => {
-    document.addEventListener('keyup', event => this.events[event.key]());
+    document.addEventListener('keyup', event => this.events[event.key] && this.events[event.key]());
   };
 
   this.newGame = (elementId) => {
