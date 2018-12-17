@@ -12,9 +12,10 @@ window.Game2048 = function () {
     [{}, {}, {}, {}]];
 
   this.refreshBoard = () => this.cells.forEach(cell => this.updateBoardCell(cell.x, cell.y));
+  this.duplicateBoardValues = b => [[...b[0]], [...b[1]], [...b[2]], [...b[3]]];
 
   this.collapseUp = (oldBoard) => {
-    let b = duplicateBoardValues(oldBoard);
+    let b = this.duplicateBoardValues(oldBoard);
 
     for (let x = 0; x < 4; x++) {
       // Collapse all 0s UP
@@ -39,7 +40,7 @@ window.Game2048 = function () {
   };
 
   this.collapseDown = oldBoard => {
-    let b = duplicateBoardValues(oldBoard);
+    let b = this.duplicateBoardValues(oldBoard);
 
     for (let x = 0; x < 4; x++) {
       // Collapse all 0s DOWN
