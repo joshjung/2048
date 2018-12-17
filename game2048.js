@@ -33,7 +33,7 @@ window.Game2048 = function () {
       // Merge all duplicate values UP
       for (let y = 0; y < 3; y++) {
         if (b[x][y] === b[x][y + 1]) {
-          this.score += b[x][y + 1];
+          newScore += b[x][y + 1];
           b[x][y + 1] *= 2;
 
           for (let y2 = y; y2 < 3; y2++) b[x][y2] = b[x][y2 + 1];
@@ -60,7 +60,7 @@ window.Game2048 = function () {
       // Merge all duplicate values DOWN
       for (let y = 3; y > 0; y--) {
         if (b[x][y] === b[x][y - 1]) {
-          score += b[x][y - 1];
+          newScore += b[x][y - 1];
           b[x][y - 1] *= 2;
 
           for (let y2 = y; y2 > 0; y2--) b[x][y2] = b[x][y2 - 1];
