@@ -11,7 +11,13 @@ window.Game2048 = function () {
     [{}, {}, {}, {}],
     [{}, {}, {}, {}]];
 
-  this.refreshBoard = () => this.cells.forEach(cell => this.updateBoardCell(cell.x, cell.y));
+  this.refreshBoard = () => {
+    this.cells.forEach(cell => this.updateBoardCell(cell.x, cell.y));
+
+    this.refreshScore();
+  };
+
+  this.score = 0;
 
   this.collapseUp = (oldBoard) => {
     let b = this.duplicateBoardValues(oldBoard);
@@ -26,6 +32,7 @@ window.Game2048 = function () {
       // Merge all duplicate values UP
       for (let y = 0; y < 3; y++) {
         if (b[x][y] === b[x][y + 1]) {
+          this.score += b[x][y + 1];
           b[x][y + 1] *= 2;
 
           for (let y2 = y; y2 < 3; y2++) b[x][y2] = b[x][y2 + 1];
@@ -51,6 +58,7 @@ window.Game2048 = function () {
       // Merge all duplicate values DOWN
       for (let y = 3; y > 0; y--) {
         if (b[x][y] === b[x][y - 1]) {
+          this.score += b[x][y - 1];
           b[x][y - 1] *= 2;
 
           for (let y2 = y; y2 > 0; y2--) b[x][y2] = b[x][y2 - 1];
@@ -76,7 +84,7 @@ window.Game2048 = function () {
 
       cell.domCell.classList.add('new');
     } else {
-      document.getElementById('game-over').classList.add('show');
+      this.gameOver();
     }
   };
 
