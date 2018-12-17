@@ -19,8 +19,9 @@ window.Game2048 = function () {
 
   this.score = 0;
 
-  this.collapseUp = (oldBoard) => {
+  this.collapseUp = (oldBoard, oldScore) => {
     let b = this.duplicateBoardValues(oldBoard);
+    let newScore = oldScore;
 
     for (let x = 0; x < 4; x++) {
       // Collapse all 0s UP
@@ -42,11 +43,12 @@ window.Game2048 = function () {
       }
     }
 
-    return b;
+    return { newBoard: b, newScore };
   };
 
-  this.collapseDown = oldBoard => {
+  this.collapseDown = (oldBoard, oldScore) => {
     let b = this.duplicateBoardValues(oldBoard);
+    let newScore = oldScore;
 
     for (let x = 0; x < 4; x++) {
       // Collapse all 0s DOWN
@@ -58,7 +60,7 @@ window.Game2048 = function () {
       // Merge all duplicate values DOWN
       for (let y = 3; y > 0; y--) {
         if (b[x][y] === b[x][y - 1]) {
-          this.score += b[x][y - 1];
+          score += b[x][y - 1];
           b[x][y - 1] *= 2;
 
           for (let y2 = y; y2 > 0; y2--) b[x][y2] = b[x][y2 - 1];
@@ -68,7 +70,7 @@ window.Game2048 = function () {
       }
     }
 
-    return b;
+    return { newBoard: b, newScore };
   };
 
   this.newRandomCell = () => {
@@ -101,22 +103,34 @@ window.Game2048 = function () {
 
   this.events = {
     ArrowLeft: () => {
-      this.boardValues = this.collapseLeft(this.boardValues);
+      let { newBoard, newScore } = this.collapseLeft(this.boardValues);
+      this.boardValues = newBoard;
+      this.score = newScore;
+
       this.refreshBoard();
       this.newRandomCell();
     },
     ArrowRight: () => {
-      this.boardValues = this.collapseRight(this.boardValues);
+      let { newBoard, newScore } = this.collapseRight(this.boardValues);
+      this.boardValues = newBoard;
+      this.score = newScore;
+
       this.refreshBoard();
       this.newRandomCell();
     },
     ArrowUp: () => {
-      this.boardValues = this.collapseUp(this.boardValues);
+      let { newBoard, newScore } = this.collapseUp(this.boardValues);
+      this.boardValues = newBoard;
+      this.score = newScore;
+
       this.refreshBoard();
       this.newRandomCell();
     },
     ArrowDown: () => {
-      this.boardValues = this.collapseDown(this.boardValues);
+      let { newBoard, newScore } = this.collapseDown(this.boardValues);
+      this.boardValues = newBoard;
+      this.score = newScore;
+
       this.refreshBoard();
       this.newRandomCell();
     },
